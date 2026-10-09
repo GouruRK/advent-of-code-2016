@@ -39,10 +39,10 @@ impl Room {
     }
 }
 
-fn solve_for_input(path: String) -> u32 {
+fn solve_for_input(path: String) -> String {
     let content = fs::read_to_string(path)
         .expect("Should have been able to read the file {path}");
-    content.lines()
+    let result = content.lines()
         .map(|x| x.trim())
         .map(Room::from_string)
         .filter(Room::is_valid)
@@ -50,9 +50,12 @@ fn solve_for_input(path: String) -> u32 {
             (('a' as u8) + ((c as u32 - 'a' as u32 + x.sector) % 26) as u8) as char
         }).collect::<String>()))
         .filter(|(_, name)| name.contains("north"))
-        .for_each(|x| println!("{}, {}", x.0, x.1));
+        .last();
 
-    0
+    match result {
+        Some((sector, _)) => sector.to_string(),
+        None => "No valid room".to_string()
+    }
 }
 
 pub fn main(){
