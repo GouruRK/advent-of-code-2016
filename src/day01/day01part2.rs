@@ -52,7 +52,7 @@ impl Direction {
 
 fn format_input(content: &str) -> Vec<(Turn, i32)> {
     content.split(',')
-        .map(|x| x.trim())
+        .map(str::trim)
         .map(|x| {
             let mut chars = x.chars();
             let dir = chars.next().unwrap();

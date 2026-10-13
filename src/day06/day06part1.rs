@@ -21,7 +21,7 @@ fn solve_for_input(path: String) -> String {
     let content = fs::read_to_string(path)
         .expect("Should have been able to read the file {path}");
     let codes = content.lines()
-        .map(|x| x.trim())
+        .map(str::trim)
         .collect::<Vec<&str>>();
 
     solve(codes)

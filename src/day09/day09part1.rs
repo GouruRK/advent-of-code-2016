@@ -48,7 +48,7 @@ fn solve_for_input(path: String) -> usize {
         .expect("Should have been able to read the file {path}");
 
     let iterator = content.lines()
-        .map(|x| x.trim())
+        .map(str::trim)
         .filter(|x| !x.is_empty())
         .flat_map(str::chars);
 

@@ -5,8 +5,8 @@ fn solve_for_input(path: String) -> usize {
     let content = fs::read_to_string(path)
         .expect("Should have been able to read the file {path}");
     content.lines()
-        .map(|x| x.trim())
-        .map(|x| x.as_bytes())
+        .map(str::trim)
+        .map(str::as_bytes)
         .filter(|x| {
             let mut in_brackets = false;
             let mut motif_found = false;

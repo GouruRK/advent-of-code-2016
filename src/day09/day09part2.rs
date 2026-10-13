@@ -51,7 +51,7 @@ fn solve_for_input(path: String) -> u64 {
         .expect("Should have been able to read the file {path}");
 
     let mut iterator = content.lines()
-        .map(|x| x.trim())
+        .map(str::trim)
         .filter(|x| !x.is_empty())
         .flat_map(str::chars);
 

@@ -82,12 +82,12 @@ fn solve_for_input<const W: usize, const H: usize>(path: String, mut grid: [[u32
         .expect("Should have been able to read the file {path}");
 
     content.lines()
-        .map(|x| x.trim())
-        .map(|x| Command::from_string(x))
+        .map(str::trim)
+        .map(Command::from_string)
         .for_each(|x| x.execute_command(&mut grid));
 
-    for row in grid.iter() {
-        for c in row.iter() {
+    for row in &grid {
+        for c in row {
             print!("{}", if *c == 0 { ' ' } else { '█' });
         }
         println!();

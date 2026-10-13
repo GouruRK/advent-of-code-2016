@@ -43,7 +43,7 @@ fn solve_for_input(path: String) -> String {
     let content = fs::read_to_string(path)
         .expect("Should have been able to read the file {path}");
     let result = content.lines()
-        .map(|x| x.trim())
+        .map(str::trim)
         .map(Room::from_string)
         .filter(Room::is_valid)
         .map(|x| (x.sector, x.encryption.chars().rev().map(|c| {

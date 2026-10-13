@@ -5,7 +5,7 @@ fn solve_for_input(path: String) -> usize {
     let content = fs::read_to_string(path)
         .expect("Should have been able to read the file {path}");
     content.lines()
-        .map(|x| x.trim())
+        .map(str::trim)
         .map(|x| x.split_whitespace()
             .map(|y| y.parse().unwrap()).collect()
         )

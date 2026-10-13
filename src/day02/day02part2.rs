@@ -42,7 +42,8 @@ fn solve_for_input(path: String) -> String {
         .expect("Should have been able to read the file {path}");
     solve(content
         .lines()
-        .map(|x| x.trim().chars())
+        .map(str::trim)
+        .map(str::chars)
         .map(|x|
             x.map(|c|
                 {
