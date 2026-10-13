@@ -86,6 +86,13 @@ fn solve_for_input<const W: usize, const H: usize>(path: String, mut grid: [[u32
         .map(|x| Command::from_string(x))
         .for_each(|x| x.execute_command(&mut grid));
 
+    for row in grid.iter() {
+        for c in row.iter() {
+            print!("{}", if *c == 0 { ' ' } else { '█' });
+        }
+        println!();
+    }
+
     grid.iter().flat_map(|x| x.iter()).sum()
 }
 
