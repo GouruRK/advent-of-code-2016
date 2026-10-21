@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use std::fs;
 
 enum ValueType {
@@ -68,32 +67,32 @@ fn solve_for_input(path: String) -> i32 {
     let content = fs::read_to_string(path)
         .expect("Should have been able to read the file {path}");
 
-let mut registers = [0; 4];
-let instructions: Vec<Instruction> = content.lines()
-    .map(str::trim)
-    .map(str::split_whitespace)
-    .map(|x| x.collect::<Vec<_>>())
-    .map(|x| {
-        match x[..] {
-            ["cpy", x, register] => {
-                Instruction::Cpy(
-                    ValueType::from_string(x),
-                    to_register_index(register.chars().nth(0).unwrap())
-                )
-            },
-            ["inc", register] => {
-                Instruction::Inc(to_register_index(register.chars().nth(0).unwrap()))
-            },
-            ["dec", register] => {
-                Instruction::Dec(to_register_index(register.chars().nth(0).unwrap()))
-            },
-            ["jnz", x, y] => {
-                Instruction::Jnz(ValueType::from_string(x), y.parse::<i32>().unwrap())
-            },
-            _ => panic!()
-        }
-    })
-    .collect::<Vec<_>>();
+    let mut registers = [0; 4];
+    let instructions: Vec<Instruction> = content.lines()
+        .map(str::trim)
+        .map(str::split_whitespace)
+        .map(|x| x.collect::<Vec<_>>())
+        .map(|x| {
+            match x[..] {
+                ["cpy", x, register] => {
+                    Instruction::Cpy(
+                        ValueType::from_string(x),
+                        to_register_index(register.chars().nth(0).unwrap())
+                    )
+                },
+                ["inc", register] => {
+                    Instruction::Inc(to_register_index(register.chars().nth(0).unwrap()))
+                },
+                ["dec", register] => {
+                    Instruction::Dec(to_register_index(register.chars().nth(0).unwrap()))
+                },
+                ["jnz", x, y] => {
+                    Instruction::Jnz(ValueType::from_string(x), y.parse::<i32>().unwrap())
+                },
+                _ => panic!()
+            }
+        })
+        .collect::<Vec<_>>();
 
     let mut index: usize = 0;
 
