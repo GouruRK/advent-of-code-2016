@@ -74,6 +74,10 @@ fn solve_for_number(magic_number: i32, target: (i32, i32)) -> i32 {
             let f = direction.get_function();
             let new_pos = f(pos);
 
+            if new_pos.0 < 0 && new_pos.1 < 0 {
+                continue;
+            }
+
             if treated.contains(&new_pos) {
                 continue;
             }
